@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Open+Sans:300,300i,400,400i,700,700i"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+        <div class="text-center">
+          <h1>Конвертируйте ваше изображение</h1>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <div class="text-center">
+          <p class="comment">Колориметрическая система - совокупность нормированных условий измерений цвета. В
+            колориметрии нормируют те условия, которые непосредственно влияют на результат: цветность основных
+            излучений, их количества, уровень яркости, размеры фотометрического поля.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="app-load">
+      <div class="drag-area">
+        <div class="icon">
+          <img class="icon-load" src="img/load.svg"></img>
+          <img class="icon-drop hide" src="img/drop.svg"></img>
+        </div>
+        <span>Перетащите файл сюда<br>или</span>
+        <input type="file" hidden></input><button type="submit" class="select-file">Выбрать файл</button>
+      </div>
+
+    </div>
+    <div class="app-option hide">
+      <div class="option">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-auto">
+              <div class="img-all">
+                <a id="close" class="close hidden"></a>
+                <div class="img-area">
+                </div>
+                <span class="name-area"></span>
+              </div>
+            </div>
+            <div class="col-md-3 icon-arrow">
+              <img src="img/arrow.svg" "></img>
+          </div>
+          <div class=" col-md-6">
+              <div class="row">
+                <div class="col-md-6">
+                  <ul>
+                    <li>
+                      <input type="radio" id="xyz" value="1" name="selector" checked>
+                      <label for="xyz">XYZ</label>
+                      <div class="check"></div>
+                    </li>
+
+                    <li>
+                      <input type="radio" id="lab" value="2" name="selector">
+                      <label for="lab">Lab</label>
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <input type="radio" id="hsv" value="3" name="selector">
+                      <label for="hsv">HSV</label>
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+                    <li>
+                      <input type="radio" id="hsl" value="4" name="selector">
+                      <label for="hsl">HSL</label>
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul>
+                    <li>
+                      <input type="radio" id="hsb" value="5" name="selector">
+                      <label for="hsb">HSB</label>
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+                    <li>
+                      <input type="radio" id="rgb" value="6" name="selector">
+                      <label for="rgb">RGB</label>
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+                    <li>
+                      <input type="radio" id="ycbcr" value="7" name="selector">
+                      <label for="ycbcr">YCbCr</label>
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+                    <li>
+                      <input type="radio" id="lms" value="8" name="selector">
+                      <label for="lms">LMS</label>
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <button type="submit" id="btn" class="upload">Преобразовать</button>
+      </div>
+    </div>
+  </div>
+
+<p id="in2"></p>
+<div class="in3">
+
+  <div class="modal error" tabindex="-1" id="errorType">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ошибка</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Файл, который вы пытаетесь загрузить не является картинкой!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+
+
+
+</body>
+
+</html>
