@@ -1,5 +1,6 @@
 $(document).ready(function(){
-  const in3 = document.querySelector(".in3");
+  const imgResult = document.querySelector(".img-result");
+  const imgResult1 = document.querySelector(".img-result1");
   const appOption = document.querySelector(".app-option"),
     imgArea = appOption.querySelector(".img-area"),
     nameArea = appOption.querySelector(".name-area"),
@@ -15,20 +16,40 @@ $(document).ready(function(){
   let file;
   let type;
   let filebase64;
-
+  let base64;
+  let base64finish;
+  let system;
+  
 
   $('#btn').click(function(event){
+    $("#preloader").fadeTo(300, 1, function () {
+      $("#preloader").removeClass("hide");
+    });
     event.stopPropagation(); 
     event.preventDefault();
     type = $('input[name="selector"]:checked').val();
 
-    $.post("/cgi-bin/getajax.py",{option:type, img:filebase64},onResponse);
-    return false;
-})
-function onResponse(option){
-    let imgTag1 = `<img src="${option}" alt="">`; 
-        in3.innerHTML = imgTag1;
-}
+    $.ajax({
+      url: '/cgi-bin/getajax.py',
+      method: 'post',
+      data: {option:type, img:base64[1]},
+      success: function(option){
+        let tag1 = `<img src="${base64[0]},${option}" alt="">`; 
+        let tag = `<img src="${base64[0]},${base64[1]}" alt="">`; 
+        base64finish = `${base64[0]},${option}`;
+        imgResult.innerHTML = tag;
+        imgResult1.innerHTML = tag1;
+        system = $('input[name="selector"]:checked + label').text();
+        $("#name-system").html(system);
+        $("#theory").load(`theory/${system}.html`);
+        $("#title").hide();
+        $("#other").hide();
+        $("#preloader").hide();
+        $("#result").removeClass("hide");
+
+      }
+    });
+  });
   
   button.onclick = () => {
     input.click();
@@ -86,6 +107,8 @@ function onResponse(option){
       fileReader.onloadend = () => {
         filebase64 = fileReader.result;
         console.log('IMAGE BASE64', filebase64);
+        base64 = filebase64.split(",");
+        console.log('base64', base64);
         let imgTag = `<img src="${filebase64}" alt="">`;
         imgArea.innerHTML = imgTag;
         nameArea.innerHTML = file.name;
@@ -110,8 +133,14 @@ function onResponse(option){
     nameArea.innerHTML = "";
   }
  
-
-
-
+  $('#repeat').click(function() {
+       location.reload();
+    });
+    $('#download').click(function() {
+    const a = document.createElement("a");
+    a.href = base64finish;
+    a.download = "img.jpg"
+    a.click();
+   });
 });
 
