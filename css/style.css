@@ -292,7 +292,12 @@ div.icon-arrow {
   display: flex;
   align-items: center;
 }
-
+div.icon {
+  width: 100px;
+}
+p.or {
+  margin-bottom: 0px;
+}
 .preloader {
   position: fixed;
   left: 0;
@@ -351,7 +356,7 @@ a.repeat {
    line-height: 30px;
    max-height: 0px;
    overflow: hidden;
-   transition: 0.4s ease-in-out;
+   transition: 1.0s ease-in-out;
  }
  
  .faq-drawer__title {
@@ -378,7 +383,7 @@ a.repeat {
    right: 10px;
    top: 6px;
    transform: rotate(135deg);
-   transition: 0.4s ease-in-out;
+   transition: 1s ease-in-out;
    vertical-align: top;
    width: 10px;
  }
@@ -390,13 +395,13 @@ a.repeat {
  .faq-drawer__trigger:checked
    + .faq-drawer__title
    + .faq-drawer__content-wrapper {
-   max-height: 350px;
+   max-height: 900px;
  }
  
  .faq-drawer__trigger:checked + .faq-drawer__title::after {
    transform: rotate(-45deg);
    top: 10px;
-   transition: 0.4s ease-in-out;
+   transition: 1s ease-in-out;
  }
  
  input[type="checkbox"] {

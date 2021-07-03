@@ -1,1 +1,28 @@
-cie luv
+<img src="theory/luv/color.png" 
+ width="200"  style="margin-left: 20px;margin-top: 5px;margin-right: 10px; float: right;">Цветовое пространство <strong>CIE Luv</strong> позволяет определить различение цветов 
+для человека с «усредненным» зрением, (т.е. различные люди неодинаково воспринимают разницу 
+между цветами). Свое название пространство получило благодаря его компонентам L, u и v. 
+Параметр <strong> L</strong> соответствует яркости цвета, <strong>u</strong> отвечает за 
+переход от зеленого к красному (при увеличении), а при увеличении параметра <strong>v</strong> 
+происходит переход от синего к фиолетовому. Если u и v равны 0, то, меняя L, получаем цвета, являющиеся градациями серого.<br>
+<br>
+<strong>Как происходит преобразование?</strong><br>
+Нормируем данные RGB до диапазона [0 ... 1]. Для этого делим значения R, G, B  на 255.<br>
+Совершаем преобразование пространства RGB в XYZ. <br>
+Для перехода в цветовое пространство CIELUV используем следующие формулы: <br>
+<img src="theory/luv/formula1.svg" 
+width="310" style="margin-top: 30px;  " > <br>
+<img src="theory/luv/formula2.svg" 
+width="310" style="margin-top: 30px; " > 
+<img src="theory/luv/formula3.svg" 
+width="310" style="margin-top: 30px; float: right; margin-right: 100px;" > <br>
+<img src="theory/luv/formula4.svg" 
+width="150" style="margin-top: 30px; " >  <br>
+<img src="theory/luv/formula5.svg" 
+width="150" style="margin-top: 30px; margin-bottom:20px" > <br>
+<i>Как определить расстояние между цветами, то есть насколько человек заметил бы различие между ними?</i> Оно задается евклидовой нормой: <br>
+<img src="theory/luv/formula6.svg" 
+width="350" style="margin-top: 15px;margin-bottom:15px" > <br>
+ 
+При расстоянии между двумя цветами D > 5 большинство людей уже замечают различие, при D > 10 оно заметно всем. В этом и состоит главное достоинство этого пространства.
+Оно учитывает восприятие цветов человеком, и различие между цветами определяется очень простой формулой.

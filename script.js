@@ -10,6 +10,7 @@ $(document).ready(function(){
     iconLoad = appLoad.querySelector(".icon-load"),
     iconDrop = appLoad.querySelector(".icon-drop"),
     dropArea = appLoad.querySelector(".drag-area"),
+    textOr = appLoad.querySelector("p"),
     dragText = appLoad.querySelector("span"),
     button = appLoad.querySelector("button"),
     input = appLoad.querySelector("input");
@@ -20,6 +21,8 @@ $(document).ready(function(){
   let base64finish;
   let system;
   
+
+
 
   $('#btn').click(function(event){
     $("#preloader").fadeTo(300, 1, function () {
@@ -50,6 +53,8 @@ $(document).ready(function(){
       }
     });
   });
+
+
   
   button.onclick = () => {
     input.click();
@@ -59,6 +64,7 @@ $(document).ready(function(){
     file = this.files[0];
     dropArea.classList.remove("active");
     dragText.textContent = "Перетащите файл сюда";
+    textOr.classList.remove("hide");
     iconLoad.classList.remove("hide");
     iconDrop.classList.add("hide");
     button.classList.remove("hidden");
@@ -70,6 +76,7 @@ $(document).ready(function(){
     event.preventDefault();
     dropArea.classList.add("active");
     dragText.textContent = "Загрузить изображение";
+    textOr.classList.add("hide");
     iconLoad.classList.add("hide");
     iconDrop.classList.remove("hide");
     button.classList.add("hidden");
@@ -80,6 +87,7 @@ $(document).ready(function(){
   dropArea.addEventListener("dragleave", () => {
     dropArea.classList.remove("active");
     dragText.textContent = "Перетащите файл сюда";
+    textOr.classList.remove("hide");
     iconLoad.classList.remove("hide");
     iconDrop.classList.add("hide");
     button.classList.remove("hidden");
@@ -91,6 +99,7 @@ $(document).ready(function(){
     file = event.dataTransfer.files[0];
     dropArea.classList.remove("active");
     dragText.textContent = "Перетащите файл сюда";
+    textOr.classList.remove("hide");
     iconLoad.classList.remove("hide");
     iconDrop.classList.add("hide");
     button.classList.remove("hidden");
@@ -112,6 +121,7 @@ $(document).ready(function(){
         let imgTag = `<img src="${filebase64}" alt="">`;
         imgArea.innerHTML = imgTag;
         nameArea.innerHTML = file.name;
+       
       }
       fileReader.readAsDataURL(file);
     } else {
@@ -136,6 +146,7 @@ $(document).ready(function(){
   $('#repeat').click(function() {
        location.reload();
     });
+
     $('#download').click(function() {
     const a = document.createElement("a");
     a.href = base64finish;
