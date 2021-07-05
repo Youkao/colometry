@@ -308,6 +308,9 @@ p.or {
   background: #fff;
   z-index: 1001;
 }
+.img-result1 img {
+  filter: saturate( 0.86 ) ;
+}
 
 .preloader__image {
   position: relative;

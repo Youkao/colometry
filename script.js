@@ -1,5 +1,6 @@
 $(document).ready(function(){
   const imgResult = document.querySelector(".img-result");
+  let canvas = document.getElementById("canvas");
   const imgResult1 = document.querySelector(".img-result1");
   const appOption = document.querySelector(".app-option"),
     imgArea = appOption.querySelector(".img-area"),
@@ -20,6 +21,7 @@ $(document).ready(function(){
   let base64;
   let base64finish;
   let system;
+
   
 
 
@@ -31,15 +33,16 @@ $(document).ready(function(){
     event.stopPropagation(); 
     event.preventDefault();
     type = $('input[name="selector"]:checked').val();
+    
 
     $.ajax({
       url: '/cgi-bin/getajax.py',
       method: 'post',
-      data: {option:type, img:base64[1]},
-      success: function(option){
-        let tag1 = `<img src="${base64[0]},${option}" alt="">`; 
+      data: {option:type, img:filebase64},
+      success: function(result){
+        let tag1 = `<img src="${base64[0]},${result}" alt="">`; 
         let tag = `<img src="${base64[0]},${base64[1]}" alt="">`; 
-        base64finish = `${base64[0]},${option}`;
+        base64finish = `${base64[0]},${result}`;
         imgResult.innerHTML = tag;
         imgResult1.innerHTML = tag1;
         system = $('input[name="selector"]:checked + label').text();
@@ -113,14 +116,17 @@ $(document).ready(function(){
       appOption.classList.remove("hide");
       appLoad.classList.add("hide");
       let fileReader = new FileReader();
+     
       fileReader.onloadend = () => {
         filebase64 = fileReader.result;
-        console.log('IMAGE BASE64', filebase64);
         base64 = filebase64.split(",");
         console.log('base64', base64);
         let imgTag = `<img src="${filebase64}" alt="">`;
         imgArea.innerHTML = imgTag;
         nameArea.innerHTML = file.name;
+        filebase64 = filebase64.replace('data:', '')
+        .replace(/^.+,/, '');
+        console.log('IMAGE BASE64', filebase64);
        
       }
       fileReader.readAsDataURL(file);

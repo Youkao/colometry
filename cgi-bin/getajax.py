@@ -17,5 +17,5 @@ print()
 if img is not None:
     code_with_padding = f"{img}{'=' * (len(img) % 4)}"
     print(code_with_padding)
-    #result_base64_string = main(code_with_padding, option)
-    #print(result_base64_string)
+    result_base64_string = main(code_with_padding, option)
+    print(result_base64_string)
